@@ -48,4 +48,22 @@ var routes = Routes{
 		"/addArticle",
 		handler.ValidateTokenMiddleware(handler.AddArticle),
 	},
+	Route{
+		"UpdateArticle",
+		"POST",
+		"/updateArticle",
+		handler.ValidateTokenMiddleware(handler.UpdateArticle),
+	},
+	Route{
+		"DeleteArticle",
+		"POST",
+		"/deleteArticle",
+		handler.ValidateTokenMiddleware(handler.DeleteArticle),
+	},
+	Route{
+		"FindArticle",
+		"POST",
+		"/findArticle",
+		handler.ValidateTokenMiddleware(handler.FindArticle),
+	},
 }
