@@ -35,9 +35,8 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	}
 	// select user to check user existed
 	user1 := model.User{}
-	stmt, _ := db.DB.Prepare(`SELECT id,email,password,status From user where email = ?`)
+	stmt, _ := db.DB.Prepare(`SELECT id,email,password,status FROM user WHERE email = ?`)
 	defer stmt.Close()
-	log.Println(user.Email)
 	row := stmt.QueryRow(user.Email)
 	row.Scan(&user1.ID, &user1.Email, &user1.Password, &user1.Status)
 
@@ -69,12 +68,12 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// create user
-	stmt, _ = db.DB.Prepare(`INSERT INTO user (email, password) Values (?,?)`)
-	defer stmt.Close()
+	stmt1, _ := db.DB.Prepare(`INSERT INTO user (email, password) Values (?,?)`)
+	defer stmt1.Close()
 
 	// crypto password
 	cryptoPassword := utils.CryptoPassword(user.Password)
-	result, err := stmt.Exec(user.Email, cryptoPassword)
+	result, err := stmt1.Exec(user.Email, cryptoPassword)
 	if err != nil {
 		ResponseWithJSON(w, http.StatusOK, model.Response{
 			Code:    -1,
