@@ -23,11 +23,11 @@ func CheckEmail(email string) bool {
 func SendEmail(email string, checkToken string) error {
 	auth := smtp.PlainAuth("", "customer@chelecom.io", "Vhsej5UMWBcZQcwf", "smtp.exmail.qq.com")
 	to := []string{email}
-	nickname := "自由的空气"
+	nickname := "emailNickname"
 	user := "customer@chelecom.io"
-	subject := "邮箱验证码"
+	subject := "Active Email"
 	contentType := "Content-Type: text/html; charset=UTF-8"
-	body := "<html><body><a href=http://192.168.1.215:3000/#/activeAccount?token=" + checkToken + ">点击链接激活账号http://localhost:8888/#/activeAccount?token=" + checkToken + "</a><body></html>"
+	body := "<html><body><a href=http://192.168.1.215:3000/#/activeAccount?token=" + checkToken + ">Active http://localhost:8888/#/activeAccount?token=" + checkToken + "</a><body></html>"
 	msg := []byte("To: " + strings.Join(to, ",") + "\r\nFrom: " + nickname +
 		"<" + user + ">\r\nSubject: " + subject + "\r\n" + contentType + "\r\n\r\n" + body)
 
