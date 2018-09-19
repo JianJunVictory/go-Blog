@@ -47,3 +47,19 @@ func AddArticle(w http.ResponseWriter, r *http.Request) {
 	})
 
 }
+
+// UpdateArticle update article data
+func UpdateArticle(w http.ResponseWriter, r *http.Request) {
+	article := new(model.Articles)
+	json.NewDecoder(r.Body).Decode(&article)
+	log.Printf("requet data info :%#v", article)
+	if article.UserID == 0 {
+		uID := r.Context().Value("uId").(string)
+		article.UserID, _ = strconv.Atoi(uID)
+	}
+	// TODO:update artice info,to be continued
+	ResponseWithJSON(w, http.StatusOK, model.Response{
+		Code:    0,
+		Message: "ok",
+	})
+}
