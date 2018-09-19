@@ -43,7 +43,6 @@ func ValidateTokenMiddleware(next http.HandlerFunc) http.HandlerFunc {
 				}
 				if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 					idStr := fmt.Sprintf("%v", claims["id"])
-					// req.Header.Set("uId", idStr)
 					ctx := context.WithValue(req.Context(), "uId", idStr)
 					req = req.WithContext(ctx)
 					next(w, req)
