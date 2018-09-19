@@ -4,12 +4,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"strings"
 
 	jwt "github.com/dgrijalva/jwt-go"
-	"github.com/go-Blog/db"
 
 	"github.com/go-Blog/model"
 	"github.com/gorilla/mux"
@@ -71,31 +69,8 @@ func ValidateTokenMiddleware(next http.HandlerFunc) http.HandlerFunc {
 	}
 }
 
-// GetName test get name handler
-func GetName(w http.ResponseWriter, r *http.Request) {
-	var godusers []model.Goduser
-	goduser := model.Goduser{}
-
-	stmt, _ := db.DB.Prepare(`SELECT * FROM  customer WHERE AGE <?`)
-	defer stmt.Close()
-	rows, err := stmt.Query(33)
-	if err != nil {
-		log.Printf("select data error: %v\n", err.Error())
-	}
-	for rows.Next() {
-		rows.Scan(&goduser.CUST_ID, &goduser.NAME, &goduser.AGE)
-		godusers = append(godusers, goduser)
-	}
-	ResponseWithJSON(w, http.StatusOK, model.Response{
-		Code:    0,
-		Message: "ok",
-		Data:    godusers,
-	})
-}
-
 // GetAge test get age handler
 func GetAge(w http.ResponseWriter, r *http.Request) {
 	age := mux.Vars(r)["age"]
-	// w.Header().Set("Content-Type","application/json;charset=UTF-8")
 	w.Write([]byte("age is " + age))
 }

@@ -19,22 +19,10 @@ type Routes []Route
 
 var routes = Routes{
 	Route{
-		"GetName",
-		"POST",
-		"/getname",
-		handler.ValidateTokenMiddleware(handler.GetName),
-	},
-	Route{
 		"GetAge",
 		"POST",
 		"/getage/{age}",
 		handler.GetAge,
-	},
-	Route{
-		"Login",
-		"POST",
-		"/login",
-		handler.Login,
 	},
 	Route{
 		"Register",
@@ -47,6 +35,12 @@ var routes = Routes{
 		"POST",
 		"/activeAccount",
 		handler.ActiveAccount,
+	},
+	Route{
+		"Login",
+		"POST",
+		"/login",
+		handler.Login,
 	},
 	Route{
 		"AddArticle",
