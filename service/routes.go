@@ -14,7 +14,7 @@ type Route struct {
 	HandlerFunc http.HandlerFunc
 }
 
-// Routes define
+// Routes defined
 type Routes []Route
 
 var routes = Routes{
@@ -29,5 +29,23 @@ var routes = Routes{
 		"POST",
 		"/getage/{age}",
 		handler.GetAge,
+	},
+	Route{
+		"Login",
+		"POST",
+		"/login",
+		handler.Login,
+	},
+	Route{
+		"Register",
+		"POST",
+		"/register",
+		handler.Register,
+	},
+	Route{
+		"ActiveAccount",
+		"POST",
+		"/activeAccount",
+		handler.ActiveAccount,
 	},
 }
