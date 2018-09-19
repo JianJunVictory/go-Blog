@@ -37,7 +37,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	user1 := model.User{}
 	stmt, _ := db.DB.Prepare(`SELECT id,email,password,status From user where email = ?`)
 	defer stmt.Close()
-
+	log.Println(user.Email)
 	row := stmt.QueryRow(user.Email)
 	row.Scan(&user1.ID, &user1.Email, &user1.Password, &user1.Status)
 
