@@ -2,10 +2,15 @@ package main
 
 import (
 	"log"
-	"./service"
+
+	"github.com/go-Blog/db"
+	"github.com/go-Blog/service"
 )
-func main(){
+
+func init() {
+	db.InitDbClient()
+}
+func main() {
 	log.Println("service start......")
 	service.StartService("3000")
-
 }
