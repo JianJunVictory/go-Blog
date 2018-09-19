@@ -45,7 +45,7 @@ func ValidateTokenMiddleware(next http.HandlerFunc) http.HandlerFunc {
 					idStr := fmt.Sprintf("%v", claims["id"])
 					// the best way is not using string type ,use you define type
 					// for example: type myType string
-					// var uId myType="uId" replace next linne "uId" to varirable uId
+					// var uId myType="uId" replace next linne "uId" to variable uId
 					// here I simplify it
 					ctx := context.WithValue(req.Context(), "uId", idStr)
 					req = req.WithContext(ctx)
