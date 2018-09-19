@@ -48,4 +48,10 @@ var routes = Routes{
 		"/activeAccount",
 		handler.ActiveAccount,
 	},
+	Route{
+		"AddArticle",
+		"POST",
+		"/addArticle",
+		handler.ValidateTokenMiddleware(handler.AddArticle),
+	},
 }

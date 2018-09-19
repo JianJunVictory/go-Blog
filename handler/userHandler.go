@@ -39,9 +39,9 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	defer stmt.Close()
 
 	row := stmt.QueryRow(user.Email)
-	row.Scan(&user1.Id, &user1.Email, &user1.Password, &user1.Status)
+	row.Scan(&user1.ID, &user1.Email, &user1.Password, &user1.Status)
 
-	if user1.Id != 0 && user1.Email != "" && user1.Password != "" {
+	if user1.ID != 0 && user1.Email != "" && user1.Password != "" {
 		// Status 0:unactive user,1:active user
 		if user1.Status != 0 {
 			ResponseWithJSON(w, http.StatusOK, model.Response{
@@ -50,7 +50,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 			})
 			return
 		}
-		checkToken, _ := utils.CreateTokenEndpoint(int(user1.Id))
+		checkToken, _ := utils.CreateTokenEndpoint(int(user1.ID))
 		err := utils.SendEmail(user1.Email, checkToken)
 		// send email failed
 		if err != nil {
@@ -165,9 +165,9 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	defer stmt.Close()
 
 	row := stmt.QueryRow(user.Email)
-	row.Scan(&user1.Id, &user1.Email, &user1.Password, &user.Status)
+	row.Scan(&user1.ID, &user1.Email, &user1.Password, &user.Status)
 
-	if user1.Id == 0 && user1.Email == "" && user1.Password == "" {
+	if user1.ID == 0 && user1.Email == "" && user1.Password == "" {
 		ResponseWithJSON(w, http.StatusOK, model.Response{
 			Code:    -1,
 			Message: "user not existed",
@@ -183,7 +183,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// TODO create token and return it
-	tokenString, _ := utils.CreateTokenEndpoint(user1.Id)
+	tokenString, _ := utils.CreateTokenEndpoint(user1.ID)
 	ResponseWithJSON(w, http.StatusOK, model.Response{
 		Code:    0,
 		Message: "OK",
