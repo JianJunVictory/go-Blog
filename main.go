@@ -9,6 +9,7 @@ import (
 
 func init() {
 	db.InitDbClient()
+
 }
 func main() {
 	log.Println("service start......")

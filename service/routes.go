@@ -22,7 +22,7 @@ var routes = Routes{
 		"GetName",
 		"POST",
 		"/getname",
-		handler.GetName,
+		handler.ValidateTokenMiddleware(handler.GetName),
 	},
 	Route{
 		"GetAge",
