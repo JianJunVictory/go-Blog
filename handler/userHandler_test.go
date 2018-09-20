@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"log"
+	"net/http"
 	"net/http/httptest"
 	"testing"
 
@@ -16,8 +17,11 @@ func TestRegister(t *testing.T) {
 	if err != nil {
 		log.Println(err)
 	}
-	req := httptest.NewRequest("POST", "/register", bytes.NewBuffer([]byte(postData)))
-	req.Header.Set("Conetent-Type", "application/json")
+	req, err := http.NewRequest("POST", "/register", bytes.NewBuffer(postData))
+	if err != nil {
+		log.Println(err)
+	}
+	// req.Header.Set("Conetent-Type", "application/json")
 	rsp := httptest.NewRecorder()
 	Register(rsp, req)
 
