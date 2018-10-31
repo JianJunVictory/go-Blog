@@ -1,4 +1,4 @@
 # golang-Blog
 
-## project with golang+angular
+## project with golang
 
