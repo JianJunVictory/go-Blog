@@ -21,7 +21,6 @@ func TestRegister(t *testing.T) {
 	if err != nil {
 		log.Println(err)
 	}
-	// req.Header.Set("Conetent-Type", "application/json")
 	rsp := httptest.NewRecorder()
 	Register(rsp, req)
 

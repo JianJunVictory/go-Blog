@@ -10,6 +10,7 @@ import (
 	jwt "github.com/dgrijalva/jwt-go"
 
 	"github.com/go-Blog/model"
+	"github.com/go-Blog/logger"
 	"github.com/gorilla/mux"
 )
 
@@ -75,5 +76,6 @@ func ValidateTokenMiddleware(next http.HandlerFunc) http.HandlerFunc {
 // GetAge test get age handler
 func GetAge(w http.ResponseWriter, r *http.Request) {
 	age := mux.Vars(r)["age"]
+	logger.LOG.Info("asdddddddddddddddddddddddddddd")
 	w.Write([]byte("age is " + age))
 }
